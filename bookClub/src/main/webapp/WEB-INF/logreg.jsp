@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- c:out ; c:forEach etc. --> 
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<!-- Formatting (dates) --> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
+<!-- form:form -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!-- for rendering errors on PUT routes -->
+<%@ page isErrorPage="true" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Book Club</title>
+</head>
+<body>
+	<div>
+		<h1>Registration</h1>
+		<form:form action="/registration" method="post" modelAttribute="newUser">
+			<div class="form-group">
+				<form:label path="name">Name: </form:label>
+				<form:errors path="name"></form:errors>
+				<form:input class="form-control" path="name"></form:input>
+			</div>
+			<div class="form-group">
+				<form:label path="email">Email: </form:label>
+				<form:errors path="email"></form:errors>
+				<form:input class="form-control" path="email"></form:input>
+			</div>
+			<div class="form-group">
+				<form:label path="password">Password: </form:label>
+				<form:errors path="password"></form:errors>
+				<form:input type="password" class="form-control" path="password"></form:input>
+			</div>
+			<div class="form-group">
+				<form:label path="confirm">Confirm Password: </form:label>
+				<form:errors path="confirm"></form:errors>
+				<form:input type="password" class="form-control" path="confirm"></form:input>
+			</div>
+			<div class="form-group">
+				<button>Register</button>
+			</div>
+		</form:form>
+
+	</div>
+	
+	<div class="container">
+	<c:out value="${loginError}"></c:out>
+	<h1>Login</h1>
+	<form:form action="/login" method="post" modelAttribute="loginUser">
+		<form:errors path="*"></form:errors>
+		<div class="form-group">
+			<form:label path="email">Email: </form:label>
+			<form:input class="form-control" path="email"></form:input>
+		</div>
+		<div class="form-group">
+			<form:label path="password">Password: </form:label>
+			<form:input class="form-control" path="password"></form:input>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary">Login</button>
+		</div>
+	</form:form>
+	</div>
+</body>
+</html>

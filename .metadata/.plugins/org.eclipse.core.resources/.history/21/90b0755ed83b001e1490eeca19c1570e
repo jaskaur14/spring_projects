@@ -1,0 +1,14 @@
+package com.codingdojo.dojos.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.codingdojo.dojos.repositories.NinjaRepository;
+
+@Service
+public class NinjaService {
+
+	@Autowired
+	private NinjaRepository repo;
+	
+}

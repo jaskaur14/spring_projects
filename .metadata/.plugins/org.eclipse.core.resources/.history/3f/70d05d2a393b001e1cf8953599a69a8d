@@ -1,0 +1,11 @@
+package com.codingdojo.dojosAndNinjas.controllers;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class MainController {
+	@AutoWired
+	private NinjaService ninjas;
+	@AutoWired
+	private DojoService dojos;
+}

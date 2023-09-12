@@ -1,0 +1,43 @@
+package com.codingdojo.beltExam.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.codingdojo.beltExam.models.Guest;
+import com.codingdojo.beltExam.services.GuestService;
+import com.codingdojo.beltExam.services.UserService;
+
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+
+@Controller
+@RequestMapping("/tables")
+public class GuestController {
+	
+	@Autowired
+	private UserService users;
+	
+	@Autowired
+	private GuestService guests;
+	
+	@GetMapping("/new")
+	public String guestForm(@ModelAttribute("newGuest") Guest guest, BindingResult result, Model model) {
+	return "createTable.jsp";
+	}
+	
+	@PostMapping("/new")
+	public String processGuest(@Valid @ModelAttribute("newGuest") Guest guest, BindingResult result, Object g, Model model, HttpSession session) {
+		if(result.hasErrors()) {
+			return "createTable.jsp";
+		}
+		guests.create(guest);
+		session.setAttribute("createdTable", guest.getId());
+		return "dashboard.jsp";
+	}
+}

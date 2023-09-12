@@ -1,0 +1,5 @@
+package com.codingdojo.dojos.logAndReg.validators;
+
+public class FieldsValueMatchValidator {
+
+}

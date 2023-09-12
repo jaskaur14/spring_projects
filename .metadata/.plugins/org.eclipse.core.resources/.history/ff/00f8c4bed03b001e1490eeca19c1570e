@@ -1,0 +1,10 @@
+package com.codingdojo.dojos.models;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="dojos")
+public class Dojo {
+
+}

@@ -1,0 +1,30 @@
+package com.codingdojo.dojos.models;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+@Table(name="dojos")
+public class Dojo {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	@Column(updatable=false)
+	private Date createdAt;
+	private Date updatedAt;
+	
+	@NotBlank
+	@Size(min=3, max=200)
+	private String name;
+	
+	public Dojo() {
+	}
+	
+	
+}

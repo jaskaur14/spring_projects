@@ -1,0 +1,13 @@
+package com.codingdojo.beltExam.repositories;
+
+import java.util.ArrayList;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.codingdojo.beltExam.models.Guest;
+import com.codingdojo.beltExam.models.User;
+
+public interface GuestRepository extends CrudRepository<Guest, Long>{
+	public ArrayList<Guest> findAll();
+	public ArrayList<Guest> findAllByUsers();
+}

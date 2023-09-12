@@ -1,0 +1,19 @@
+package com.codingdojo.beltExam.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.codingdojo.beltExam.services.GuestService;
+import com.codingdojo.beltExam.services.UserService;
+
+@Controller
+@RequestMapping("/tables")
+public class GuestController {
+	
+	@Autowired
+	private UserService users;
+	
+	@Autowired
+	private GuestService guests;
+}

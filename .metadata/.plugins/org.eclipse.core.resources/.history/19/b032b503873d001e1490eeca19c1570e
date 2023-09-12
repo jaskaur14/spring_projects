@@ -1,0 +1,5 @@
+package com.codingdojo.dojos.bookClub.services;
+
+public class BookService {
+
+}

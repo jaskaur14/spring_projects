@@ -1,0 +1,5 @@
+package com.codingdojo.beltExam.models;
+
+public class Guest {
+
+}

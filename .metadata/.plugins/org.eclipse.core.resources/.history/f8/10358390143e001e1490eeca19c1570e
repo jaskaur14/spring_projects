@@ -1,0 +1,5 @@
+package com.codingdojo.dojos.bookClub.controllers;
+
+public class dashboardController {
+
+}

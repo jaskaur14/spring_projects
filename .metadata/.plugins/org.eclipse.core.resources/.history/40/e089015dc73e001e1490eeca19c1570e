@@ -1,0 +1,5 @@
+package com.codingdojo.beltExam.repositories;
+
+public interface GuestRepository {
+
+}

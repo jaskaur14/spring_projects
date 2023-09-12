@@ -1,0 +1,35 @@
+package com.codingdojo.beltExam.services;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.codingdojo.beltExam.models.Table;
+import com.codingdojo.beltExam.repositories.TableRepository;
+
+@Service
+public class TableService {
+	@Autowired
+	private TableRepository repo;
+	
+	public ArrayList<Table> all(){
+		return repo.findAll();
+	}
+	
+	public Table find(Long id) {
+		return repo.findById(id).orElse(null);
+	}
+	
+	public Table create(Table table) {
+		return repo.save(table);
+	}
+	
+	public Table update(Table table) {
+		return repo.save(table);
+	}
+	
+	public void destroy(Long id) {
+		repo.deleteById(id);
+	}
+}

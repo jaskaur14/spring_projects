@@ -1,0 +1,75 @@
+package com.codingdojo.beltExam.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.codingdojo.beltExam.models.Guest;
+import com.codingdojo.beltExam.services.GuestService;
+import com.codingdojo.beltExam.services.UserService;
+
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+
+@Controller
+@RequestMapping("/tables")
+public class GuestController {
+	
+	@Autowired
+	private UserService users;
+	
+	@Autowired
+	private GuestService guests;
+	
+	@GetMapping("/new")
+	public String guestForm(@ModelAttribute("newGuest") Guest guest, BindingResult result, Model model) {
+	return "createTable.jsp";
+	}
+	
+	@PostMapping("/new")
+	public String processGuest(@Valid @ModelAttribute("newGuest") Guest guest, BindingResult result, Object g, Model model, HttpSession session) {
+		if(result.hasErrors()) {
+			return "createTable.jsp";
+		}
+		guests.create(guest);
+		session.setAttribute("createdTable", guest.getId());
+		return "redirect:/home";
+	}
+	
+	@GetMapping("/{id}/edit")
+	public String editGuest(@PathVariable("id") Long id, Model model, @ModelAttribute("guest") Guest guest, HttpSession session) {
+		Guest guestToEdit = guests.find(id);
+		model.addAttribute("user", users.find((Long)session.getAttribute("loggedIn")));
+		model.addAttribute("guest", guestToEdit);
+		return "editTable.jsp";
+	}
+	
+	@PutMapping("/{id/edit")
+	public String updateTable(@Valid @ModelAttribute("guest") Guest guest, BindingResult result, @PathVariable("id") Long id, Model model, Object e, HttpSession session) {
+		if(session.getAttribute("loggedIn") == null) {
+			return "redirect:/home";
+		}
+		if(result.hasErrors()) {
+			return "editTable.jsp";
+		}
+		guests.update(guest);
+		session.setAttribute("updatedBook", guest.getId());
+		return "redirect:/home";
+	}
+	
+	@GetMapping("/{id}/delete")
+	public String delete(@PathVariable("id") Long id, HttpSession session) {
+		if(session.getAttribute("loggedIn")==null) {
+			return "redirect:/home";
+		}
+		guests.destroy(id);
+		return "redirect:/home";
+	}
+}

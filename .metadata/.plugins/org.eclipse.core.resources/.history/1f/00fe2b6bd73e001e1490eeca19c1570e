@@ -1,0 +1,29 @@
+package com.codingdojo.beltExam.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.codingdojo.beltExam.models.Guest;
+import com.codingdojo.beltExam.services.GuestService;
+import com.codingdojo.beltExam.services.UserService;
+
+@Controller
+@RequestMapping("/tables")
+public class GuestController {
+	
+	@Autowired
+	private UserService users;
+	
+	@Autowired
+	private GuestService guests;
+	
+	@GetMapping("/new")
+	public String guestForm(@ModelAttribute("newGuest") Guest guest, BindingResult result, Model model) {
+	return "createTable.jsp";
+	}
+}

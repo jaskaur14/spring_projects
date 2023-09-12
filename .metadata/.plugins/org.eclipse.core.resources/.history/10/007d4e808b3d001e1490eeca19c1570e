@@ -1,0 +1,13 @@
+package com.codingdojo.dojos.bookClub.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.codingdojo.dojos.bookClub.repositories.BookRepository;
+
+@Service
+public class BookService {
+
+	@Autowired
+	private BookRepository repo;
+}

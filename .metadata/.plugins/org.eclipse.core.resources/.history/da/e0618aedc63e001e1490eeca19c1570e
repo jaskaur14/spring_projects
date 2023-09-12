@@ -1,0 +1,5 @@
+package com.codingdojo.beltExam.controllers;
+
+public class TableController {
+
+}
